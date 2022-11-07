@@ -72,6 +72,12 @@ contract StateChannel {
     //Deposits money to either Alice or Bob.
     function deposit() public payable {
 	//Your code goes here
+    if(msg.sender == Alice){
+        AliceBalance += int(msg.value);
+    }
+    else{
+        BobBalance += int(msg.value);
+    }
     }
 
     //This eliminates the need for the parties to exchange ledgers with
@@ -91,6 +97,12 @@ contract StateChannel {
     function startWithdrawal(Signature calldata sig,
 			     OffChainLedger calldata L) public {
 	//Your code goes here
+
+    require(msg.sender == Alice || msg.sender == Bob,"No DoS pls");
+	require(deadline == 0,"A withdrawal is already in progress!");
+	deadline = block.timestamp + WARNING_PERIOD;
+	tentativeBalanceDelta = 0;
+    
     }
     //Sends the entire balance of the state channel to Alice and Bob;
     //one could support withdrawing only part of the funds but I don't for now.
@@ -98,5 +110,6 @@ contract StateChannel {
     //message is N+1.
     function completeWithdrawal() public {
 	//Your code goes here
+   
     }
 }

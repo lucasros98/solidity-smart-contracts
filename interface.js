@@ -240,5 +240,5 @@ module.exports = {
     deposit,
     pay,
     startWithdrawal,
-    completeWithdrawal
+    completeWithdrawal,
 }

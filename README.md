@@ -1,2 +1,4 @@
-# solidity-smart-contracts
-Exploring smart contracts and Solidity
+# Solidity and Smart Contracts
+
+
+Exploring solidity to learn more about smart contracts and Ethereum etc.
